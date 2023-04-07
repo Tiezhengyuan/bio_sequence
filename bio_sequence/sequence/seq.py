@@ -43,3 +43,8 @@ class Seq:
         return count
 
         
+    def calculate_hamming_distance(self, seq2:str):
+        '''
+        number of positions of that two codewords of the same length differe
+        '''
+        
