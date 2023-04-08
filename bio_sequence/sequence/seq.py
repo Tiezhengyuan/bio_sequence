@@ -66,14 +66,5 @@ class Seq:
         seq_len = len(self.seq) if len(self.seq) >= len(seq2) else len(seq2)
         return (seq_len - dist)/seq_len
 
-    def k_mers(self, k:int)->Iterable:
-        '''
-        k-mers are substrings of length k contained within a sequence
-        '''
-        len_seq = self.length()
-        if k > len_seq:
-            k = len_seq
-        for start in range(0, len_seq-k+1):
-            # print(self.seq[start:start+k], start, start+k-1)
-            yield (self.seq[start:start+k], start, start+k-1)
+
 

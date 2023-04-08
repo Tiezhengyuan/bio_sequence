@@ -72,3 +72,32 @@ class DNA(Seq):
         while self.seq[-(olen+1):] == seq2[:(olen+1)]:
             olen +=1
         return olen
+
+    def detect_target_repeat(self, repeat:str=None)->list:
+        if repeat is None: repeat = 'N'
+
+        pool = []
+        start = self.seq.index(repeat)
+        end = start + len(repeat)
+        while 0 <= start < self.length():
+            next_seq = self.seq[start+1:]
+            pos = next_seq.index(repeat)
+            if pos == 0:
+                end += len(repeat)
+            elif pos > 0:
+                pool.append((start, end))
+                start = pos
+                end = start + len(repeat)
+            else:
+                break
+        return pool
+    
+    def detect_longest_target_repeat(self, repeat:str=None)->tuple:
+        pool = self.detect_target_repeat(repeat)
+        repeat_start, repeat_end = 0, 0
+        for start, end in pool:
+            if (end - start) > (repeat_end - repeat_start):
+                repeat_start, repeat_end = start, end
+        return repeat_start, repeat_end
+
+        

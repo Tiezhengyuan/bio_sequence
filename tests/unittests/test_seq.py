@@ -94,12 +94,3 @@ class TestDNA(TestCase):
         res = c(seq1).calculate_similarity(seq2)
         assert res == expect
 
-    @data(
-        ['ATACTC', 5,  ['ATACT', 'TACTC']],
-        ['ATACTC', 15,  ['ATACTC']],
-        ['ATA', 1,  ['A','T','A',]],
-    )
-    @unpack
-    def test_k_mers(self, seq, k, expect):
-        res = c(seq).k_mers(k)
-        assert [i[0] for i in res] == expect
