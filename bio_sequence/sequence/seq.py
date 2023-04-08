@@ -1,7 +1,7 @@
 """
 process sequence
 """
-from typing import Iterable
+from typing import Iterable, Callable
 
 class Seq:
     def __init__(self, seq:str=None):
@@ -41,10 +41,39 @@ class Seq:
             else:
                 start = -1
         return count
-
         
-    def calculate_hamming_distance(self, seq2:str):
+    def calculate_hamming_distance(self, seq2:str, func:Callable=None)->int:
         '''
         number of positions of that two codewords of the same length differe
+        Note: self.seq and seq2 may be same lengths
         '''
+        if func is None:
+            def func(a, b):
+                return a != b
+        #
+        dist = 0
+        for a,b in zip(self.seq, seq2):
+            if func(a, b):
+                dist += 1
+        dist += abs(len(self.seq)-len(seq2))
+        return dist
         
+    def calculate_similarity(self, seq2:str)->float:
+        '''
+        Note: self.seq and seq2 may be same lengths
+        '''
+        dist = self.calculate_hamming_distance(seq2)
+        seq_len = len(self.seq) if len(self.seq) >= len(seq2) else len(seq2)
+        return (seq_len - dist)/seq_len
+
+    def k_mers(self, k:int)->Iterable:
+        '''
+        k-mers are substrings of length k contained within a sequence
+        '''
+        len_seq = self.length()
+        if k > len_seq:
+            k = len_seq
+        for start in range(0, len_seq-k+1):
+            # print(self.seq[start:start+k], start, start+k-1)
+            yield (self.seq[start:start+k], start, start+k-1)
+

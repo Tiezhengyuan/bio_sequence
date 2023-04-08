@@ -68,3 +68,38 @@ class TestDNA(TestCase):
     def test_search_sub_seq(self, seq, sub_seq, expect):
         res = c(seq).search_sub_seq(sub_seq)
         assert res == expect
+
+    @data(
+        ['ATGC', 'ATGC', 0],
+        ['ATGC', 'ATTC', 1],
+        ['ATGC', 'CTAG', 3],
+        ['AAACCCGGGTTT', 'CGACGATATGTC', 9],
+        ['ATGC', 'AT', 2],
+        ['ATGC', 'ATGCT', 1],
+    )
+    @unpack
+    def test_calculate_hamming_distance(self, seq1, seq2, expect):
+        res = c(seq1).calculate_hamming_distance(seq2)
+        assert res == expect
+
+    @data(
+        ['ATGC', 'ATGC', 1],
+        ['ATGC', 'ATTC', .75],
+        ['ATGC', 'CTAG', .25],
+        ['ATGC', 'GGAT', 0],
+        ['AAACCCGGGTTT', 'CGACGATATGTC', .25],
+    )
+    @unpack
+    def test_calculate_similarity(self, seq1, seq2, expect):
+        res = c(seq1).calculate_similarity(seq2)
+        assert res == expect
+
+    @data(
+        ['ATACTC', 5,  ['ATACT', 'TACTC']],
+        ['ATACTC', 15,  ['ATACTC']],
+        ['ATA', 1,  ['A','T','A',]],
+    )
+    @unpack
+    def test_k_mers(self, seq, k, expect):
+        res = c(seq).k_mers(k)
+        assert [i[0] for i in res] == expect

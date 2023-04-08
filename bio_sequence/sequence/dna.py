@@ -46,3 +46,29 @@ class DNA(Seq):
                 return False
         return True
     
+    
+    def detect_similarity(self, seq2:str)->tuple:
+        '''
+        Note: length of seq2<= self.seq
+        '''
+        len_seq = len(seq2)
+        min_dist, pool = len_seq, []
+        S = Seq(seq2)
+        for seq1, start, end in self.k_mers(len_seq):
+            dist = S.calculate_hamming_distance(seq1)
+            if dist < min_dist:
+                min_dist = dist
+                pool = [(start, end)]
+            elif dist == min_dist:
+                pool.append((start, end))
+        max_same = len_seq - min_dist
+        return max_same, pool
+
+    def detect_overlap(self, seq2:str)->tuple:
+        '''
+        3-end of seq1 is overlapped with 5-end of seq2
+        '''
+        olen = 0
+        while self.seq[-(olen+1):] == seq2[:(olen+1)]:
+            olen +=1
+        return olen

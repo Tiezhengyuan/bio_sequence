@@ -38,6 +38,8 @@ class TestDNA(TestCase):
         res = c(seq).calculate_gc()
         assert res == expect
 
+
+
     @data(
         ['GATCTCTAG', True],
         ['GATCCTAG', True],
@@ -50,3 +52,27 @@ class TestDNA(TestCase):
     def test_is_palindromic(self, input, expect):
         res = c.is_palindromic(input)
         assert res == expect
+
+    @data(
+        ['ATGC', 'TGA', 2, [(1,3)]],
+        ['ATGCTATGCT', 'TGCT', 4,  [(1, 4), (6, 9)]],
+    )
+    @unpack
+    def test_detect_similarity(self, seq1, seq2, expect_max, expect):
+        res = c(seq1).detect_similarity(seq2)
+        assert res[0] == expect_max
+        assert res[1] == expect
+
+    @data(
+        ['AAATAAA', 'AAATTT', 3],
+        ['AAATAAA', 'TAAATTT', 0],
+    )
+    @unpack
+    def test_detect_overlap(self, seq1, seq2, expect):
+        res = c(seq1).detect_overlap(seq2)
+        assert res == expect
+
+
+
+
+
