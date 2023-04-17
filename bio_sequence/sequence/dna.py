@@ -33,18 +33,7 @@ class DNA(Seq):
         c = self.count_sub_seq('C')
         return (g + c)/self.length()
 
-    @staticmethod
-    def is_palindromic(seq:str, iter:str=None)->bool:
-        if iter is None: iter = 0
-        if len(seq) >= 2:
-            first, last = seq[0], seq[-1]
-            if first == last:
-                return DNA.is_palindromic(seq[1:-1], iter+1)
-            return False
-        else:
-            if iter == 0:
-                return False
-        return True
+
     
     
     def detect_similarity(self, seq2:str)->tuple:

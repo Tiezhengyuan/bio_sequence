@@ -1,0 +1,45 @@
+'''
+Test class 
+'''
+from tests.helper import *
+from bio_sequence.sequence.palindromic import Palindromic as c
+
+@ddt
+class TestPalindromic(TestCase):
+
+
+    @data(
+        ['GATCTCTAG', True],
+        ['GATCCTAG', True],
+        ['GAG', True],
+        ['GG', True],
+        ['GATT', False],
+        ['', False],
+    )
+    @unpack
+    def test_is_palindromic(self, input, expect):
+        res = c.is_palindromic(input)
+        assert res == expect
+    
+    @data(
+        [
+            'GCGCTCCTGATTTAATACGACGAGACGACCAGCCCCAGCCGAGATTTGTGCTGATCCGGT',
+            [('GACCAG', 26, 31), ('AGCCGA', 36, 41)],
+        ],
+    )
+    @unpack
+    def test_detect_palindromic(self, input, expect):
+        res = c(input).detect_palindromic(6)
+        assert res == expect
+
+    @data(
+        [
+            'GCGCTCCTGATTTAATACGACGAGACGACCAGCCCCAGCCGAGATTTGTGCTGATCCGGT',
+            [('CGACCAGC', 25, 32)],
+        ],
+    )
+    @unpack
+    def test_detect_longest_palindromic(self, input, expect):
+        res = c(input).detect_longest_palindromic()
+        print(res)
+        assert res == expect
