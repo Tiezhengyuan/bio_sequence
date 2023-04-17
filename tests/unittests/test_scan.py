@@ -8,17 +8,17 @@ from bio_sequence.seq_model.scan import Scan as c
 class TestScan(TestCase):
 
     @data(
-        ['ATC', None,  ['A', 'T', 'C']],
-        ['ATC', 1,  ['A', 'T', 'C']],
-        ['ATC', -2,  ['A', 'T', 'C']],
-        ['ATC', 2,  ['AT', 'C']],
-        ['ATCG', 2,  ['AT', 'CG']],
-        ['ATC', 3,  ['ATC']],
-        ['ATC', 10,  ['ATC']],
+        ['ATC', None, None, [('A', 1), ('T', 2), ('C', 3)]],
+        ['ATC', 0, 1, [('A', 1), ('T', 2), ('C', 3)]],
+        ['ATC', 0, -2, [('A', 1), ('T', 2), ('C', 3)]],
+        ['ATC', 0, 2, [('AT', 2), ('C', 3)]],
+        ['ATCG', 0, 2, [('AT', 2), ('CG', 4)]],
+        ['ATC', 0, 3, [('ATC',3)]],
+        ['ATC', 0, 10, [('ATC',3)]],
     )
     @unpack
-    def test_forward(self, seq, step, expect):
-        res = c.forward(seq, step)
+    def test_forward(self, seq, start, step, expect):
+        res = c.forward(seq, start, step)
         assert list(res) == expect
 
     @data(

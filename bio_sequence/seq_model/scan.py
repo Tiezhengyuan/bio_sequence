@@ -6,12 +6,16 @@ from itertools import islice
 class Scan:
 
     @staticmethod
-    def forward(seq:str, step:int=None)->Iterable:
+    def forward(seq:str, start:int=None, step:int=None)->Iterable:
+        if start is None or start <= 0: start = 0
         if step is None or step <= 0: step = 1
+        end_pos = start
         while len(seq) > 0:
+            # print(seq, start)
             i = seq[:step]
+            end_pos += len(i)
             seq = seq[step:]
-            yield i 
+            yield (i, end_pos)
 
     @staticmethod
     def backward(seq:str, step:int=None)->Iterable:

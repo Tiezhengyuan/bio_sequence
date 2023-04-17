@@ -9,27 +9,34 @@ class Compress:
         pass
     
     @staticmethod
-    def encode_repeat(seq:Iterable):
+    def encode_repeat(seq:Iterable)->Iterable:
         '''
         count consecutive repeating characters as digits
         '''
         if len(list(seq)) == 0:
-            return ''
+            return []
         encoded = []
         curr, count = seq[0], 1
         for i in seq[1:]:
             if i != curr:
-                encoded.append(curr)
-                if count > 1:
-                    encoded.append(str(count))
+                encoded.append((curr, count))
                 curr, count = i, 1
             else:
                 count += 1
         else:
-            encoded.append(curr)
+            encoded.append((curr, count))
+        return encoded
+
+    @staticmethod
+    def to_encoded_seq(seq:Iterable)->str:
+        encoded = Compress.encode_repeat(seq)
+        encoded_seq = []
+        for nt, count in encoded:
+            encoded_seq.append(nt)
             if count > 1:
-                encoded.append(str(count))
-        return ''.join(encoded)
+                encoded_seq.append(str(count))
+        return ''.join(encoded_seq)
+            
 
     @staticmethod
     def decode_repeat(encoded_seq:Iterable):
