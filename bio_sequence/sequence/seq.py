@@ -5,7 +5,8 @@ from typing import Iterable, Callable
 
 class Seq:
     def __init__(self, seq:str=None):
-        self.seq = seq.upper().replace('\n', '')
+        if seq and isinstance(seq, str):
+            self.seq = seq.upper().replace('\n', '')
     
     def length(self)->int:
         return len(self.seq)

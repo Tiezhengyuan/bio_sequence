@@ -10,6 +10,7 @@ class Scan:
         if start is None or start <= 0: start = 0
         if step is None or step <= 0: step = 1
         end_pos = start
+        seq = seq[start:]
         while len(seq) > 0:
             # print(seq, start)
             i = seq[:step]

@@ -15,6 +15,13 @@ class TestScan(TestCase):
         ['ATCG', 0, 2, [('AT', 2), ('CG', 4)]],
         ['ATC', 0, 3, [('ATC',3)]],
         ['ATC', 0, 10, [('ATC',3)]],
+        ['ATGACACGATATGAGATATGCATAGAAAGCGAATATAGATAG', 0, 3, [('ATG', 3), 
+            ('ACA', 6), ('CGA', 9), ('TAT', 12), ('GAG', 15), ('ATA', 18),
+            ('TGC', 21), ('ATA', 24), ('GAA', 27), ('AGC', 30), ('GAA', 33),
+            ('TAT', 36), ('AGA', 39), ('TAG', 42)],],
+        ['ATGACACGATATGAGATATGCATAGAAAGCGAATATAGATAG',9, 3, [('TAT', 12), \
+            ('GAG', 15), ('ATA', 18), ('TGC', 21), ('ATA', 24), ('GAA', 27),\
+            ('AGC', 30), ('GAA', 33), ('TAT', 36), ('AGA', 39), ('TAG', 42)],],
     )
     @unpack
     def test_forward(self, seq, start, step, expect):
