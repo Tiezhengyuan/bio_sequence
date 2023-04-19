@@ -29,6 +29,9 @@ class Seq:
         return res
     
     def search_sub_seq(self, sub_seq:str)->list:
+        '''
+        search all subsequences 
+        '''
         if len(sub_seq)==0:
             return []
         #

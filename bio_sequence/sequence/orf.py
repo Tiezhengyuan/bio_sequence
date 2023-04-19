@@ -65,6 +65,7 @@ class ORF(DNA):
 
     def detect_orfs(self):
         '''
+        suppose there is no intron.
         '''
         for start_codon in self.detect_start_codon():
             termination_codon = self.detect_termination_codon(start_codon[1])

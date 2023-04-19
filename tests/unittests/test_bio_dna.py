@@ -2,7 +2,7 @@
 Test class 
 '''
 from tests.helper import *
-from sequence.bio_dna import bio_DNA as c
+from bio_sequence.sequence.bio_dna import BioDNA as c
 
 @ddt
 class Test_(TestCase):
@@ -30,13 +30,14 @@ class Test_(TestCase):
         assert res == 'TAGATC'
 
     @data(
-        ['GATCTA', 'DL'],
-        ["ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG", 'MAIVMGR*KGAR*'],
-        # ['AT', ''],
+        ['GATCTA', None, 'DL'],
+        ["ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG", None, 'MAIVMGR*KGAR*'],
+        ["ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG", True, 'MAIVMGR'],
+        ['AT', None, ''],
     )
     @unpack
-    def test_to_protein(self, seq, expect):
-        res = c(seq).translate()
+    def test_to_protein(self, seq, to_stop, expect):
+        res = c(seq).translate(to_stop=to_stop)
         assert res == expect
 
     def test_to_rna(self):

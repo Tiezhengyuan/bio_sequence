@@ -1,6 +1,7 @@
 '''
-Test class 
+Test class ORF
 
+Test sequence I:
 1-42
 0   3   6   9   12  15  18  21  24  27  30  33  36  39 
 ATG-ACA-CGA-TAT-GAG-ATA-TGC-ATA-GAA-AGC-GAA-TAT-AGA-TAG
