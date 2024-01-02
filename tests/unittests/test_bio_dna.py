@@ -2,31 +2,28 @@
 Test class 
 '''
 from tests.helper import *
-from bio_sequence.sequence.bio_dna import BioDNA as c
+from src.eseq import BioDNA
 
 @ddt
 class Test_(TestCase):
 
-    def setUp(self):
-        pass
-
     def test_(self):
-        c('ATGC')
+        BioDNA('ATGC')
     
     def test_count_subseq(self):
-        res = c('ATGATCTA').count('AT')
+        res = BioDNA('ATGATCTA').count('AT')
         assert res == 2
 
     def test_locate_subseq(self):
-        res = c('GATCTA').find('AT')
+        res = BioDNA('GATCTA').find('AT')
         assert res == 1
 
     def test_complement(self):
-        res = c('GATCTA').complement()
+        res = BioDNA('GATCTA').complement()
         assert res == 'CTAGAT'
 
     def test_reverse_complement(self):
-        res = c('GATCTA').reverse_complement()
+        res = BioDNA('GATCTA').reverse_complement()
         assert res == 'TAGATC'
 
     @data(
@@ -37,10 +34,10 @@ class Test_(TestCase):
     )
     @unpack
     def test_to_protein(self, seq, to_stop, expect):
-        res = c(seq).translate(to_stop=to_stop)
+        res = BioDNA(seq).translate(to_stop=to_stop)
         assert res == expect
 
     def test_to_rna(self):
-        res = c('GATCTA').transcribe()
+        res = BioDNA('GATCTA').transcribe()
         assert res == 'GAUCUA'
     

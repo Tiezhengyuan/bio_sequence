@@ -3,6 +3,7 @@ process DNA sequence using naive methods
 """
 from typing import Iterable
 from .seq import Seq
+from .model.scan import Scan
 
 class DNA(Seq):
     nt_pair = {'A':'T', 'T':'A', 'G':'C', 'C':'G',}
@@ -43,7 +44,7 @@ class DNA(Seq):
         len_seq = len(seq2)
         min_dist, pool = len_seq, []
         S = Seq(seq2)
-        for seq1, start, end in self.k_mers(len_seq):
+        for seq1, start, end in Scan.k_mers(self.seq, len_seq):
             dist = S.calculate_hamming_distance(seq1)
             if dist < min_dist:
                 min_dist = dist

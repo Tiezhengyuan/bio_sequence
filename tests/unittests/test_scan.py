@@ -2,7 +2,7 @@
 Test class 
 '''
 from tests.helper import *
-from bio_sequence.seq_model.scan import Scan as c
+from src.eseq import Scan
 
 @ddt
 class TestScan(TestCase):
@@ -25,7 +25,7 @@ class TestScan(TestCase):
     )
     @unpack
     def test_forward(self, seq, start, step, expect):
-        res = c.forward(seq, start, step)
+        res = Scan.forward(seq, start, step)
         assert list(res) == expect
 
     @data(
@@ -39,7 +39,7 @@ class TestScan(TestCase):
     )
     @unpack
     def test_backward(self, seq, step, expect):
-        res = c.backward(seq, step)
+        res = Scan.backward(seq, step)
         assert list(res) == expect
 
     @data(
@@ -49,7 +49,7 @@ class TestScan(TestCase):
     )
     @unpack
     def test_neighbor_forward(self, seq, step, expect):
-        res = c.neighbor_forward(seq, step)
+        res = Scan.neighbor_forward(seq, step)
         assert list(res) == expect
 
     @data(
@@ -61,7 +61,7 @@ class TestScan(TestCase):
     )
     @unpack
     def test_biends(self, seq, expect):
-        res = c.biends(seq)
+        res = Scan.biends(seq)
         assert list(res) == expect
 
     @data(
@@ -71,5 +71,5 @@ class TestScan(TestCase):
     )
     @unpack
     def test_k_mers(self, seq, k, expect):
-        res = c.k_mers(seq, k)
+        res = Scan.k_mers(seq, k)
         assert [i[0] for i in res] == expect

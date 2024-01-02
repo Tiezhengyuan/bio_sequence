@@ -1,12 +1,23 @@
-# bioSeq: process sequence data
+#eSeq: process sequence data
 
 ## introduction
-Sequences could be DNA, RNA, amino acid sequence, etc.
+the tool eSeq can process various sequences including DNA, RNA, amino acid sequence, etc.
 
+quick installation
+```
+pip install eseq
+```
 
-## tests
+## devlopment
 
-### unit tests
+Launch virtual environment.
+```
+git clone git@github.com:Tiezhengyuan/bio_sequence.git
+cd bio_sequence
+source venv/bin/activate
+```
+
+Run unit tests
 ```
 pytest tests/unittests
 ```

@@ -37,7 +37,7 @@ slice long sequence into many seqs
 one seq is stored into the trie
 """
 from typing import Iterable
-from bio_sequence.seq_model.scan import Scan
+from .scan import Scan
 
 class SeqTrie:
     def __init__(self, root_val:str=None):

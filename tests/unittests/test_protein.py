@@ -4,8 +4,9 @@ Test class
 from unittest import TestCase, mock
 from ddt import ddt, data, unpack
 import os, sys
-from bio_sequence.sequence.protein import Protein
+from src.eseq import Protein
 
+@ddt
 class Test_(TestCase):
 
     def setUp(self):
@@ -17,4 +18,5 @@ class Test_(TestCase):
     )
     @unpack
     def test_detect_motif(self, seq, prosite, k, expect):
+        pass
         

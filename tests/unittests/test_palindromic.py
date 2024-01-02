@@ -2,7 +2,7 @@
 Test class 
 '''
 from tests.helper import *
-from bio_sequence.sequence.palindromic import Palindromic as c
+from src.eseq import Palindromic
 
 @ddt
 class TestPalindromic(TestCase):
@@ -18,7 +18,7 @@ class TestPalindromic(TestCase):
     )
     @unpack
     def test_is_palindromic(self, input, expect):
-        res = c.is_palindromic(input)
+        res = Palindromic.is_palindromic(input)
         assert res == expect
     
     @data(
@@ -29,7 +29,7 @@ class TestPalindromic(TestCase):
     )
     @unpack
     def test_detect_palindromic(self, input, expect):
-        res = c(input).detect_palindromic(6)
+        res = Palindromic(input).detect_palindromic(6)
         assert res == expect
 
     @data(
@@ -40,6 +40,5 @@ class TestPalindromic(TestCase):
     )
     @unpack
     def test_detect_longest_palindromic(self, input, expect):
-        res = c(input).detect_longest_palindromic()
-        print(res)
+        res = Palindromic(input).detect_longest_palindromic()
         assert res == expect

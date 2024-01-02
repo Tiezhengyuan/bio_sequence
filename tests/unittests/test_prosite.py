@@ -2,7 +2,7 @@
 Test class 
 '''
 from tests.helper import *
-from bio_sequence.sequence.prosite import Prosite
+from src.eseq import Prosite
 
 @ddt
 class TestProsite(TestCase):

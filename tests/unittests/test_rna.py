@@ -2,7 +2,7 @@
 Test class 
 '''
 from tests.helper import *
-from sequence.rna import RNA
+from src.eseq import RNA
 
 @ddt
 class Test_(TestCase):

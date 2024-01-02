@@ -3,7 +3,7 @@ process DNA sequence using naive methods
 """
 from typing import Iterable
 from .dna import DNA
-from bio_sequence.seq_model.scan import Scan
+from .model.scan import Scan
 
 class Palindromic(DNA):
 

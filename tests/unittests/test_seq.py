@@ -2,10 +2,10 @@
 Test class 
 '''
 from tests.helper import *
-from bio_sequence.sequence.seq import Seq as c
+from src.eseq import Seq
 
 @ddt
-class TestDNA(TestCase):
+class TestSeq(TestCase):
 
     @data(
         ['ATGC', 'ATGC'],
@@ -15,7 +15,7 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_(self, seq, expect):
-        res = c(seq)
+        res = Seq(seq)
         assert getattr(res, 'seq') == expect
 
     @data(
@@ -24,7 +24,7 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_length(self, seq, expect):
-        res = c(seq).length()
+        res = Seq(seq).length()
         assert res == expect
 
     @data(
@@ -33,7 +33,7 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_reverse(self, seq, expect):
-        res = c(seq).reverse()
+        res = Seq(seq).reverse()
         assert res == expect
 
     @data(
@@ -45,7 +45,7 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_count_sub_seq(self, seq, sub_seq, expect):
-        res = c(seq).count_sub_seq(sub_seq)
+        res = Seq(seq).count_sub_seq(sub_seq)
         assert res == expect
 
     @data(
@@ -54,7 +54,7 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_count_occurrence(self, seq, expect):
-        res = c(seq).count_occurrence()
+        res = Seq(seq).count_occurrence()
         assert res == expect
 
     @data(
@@ -66,7 +66,7 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_search_sub_seq(self, seq, sub_seq, expect):
-        res = c(seq).search_sub_seq(sub_seq)
+        res = Seq(seq).search_sub_seq(sub_seq)
         assert res == expect
 
     @data(
@@ -79,7 +79,7 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_calculate_hamming_distance(self, seq1, seq2, expect):
-        res = c(seq1).calculate_hamming_distance(seq2)
+        res = Seq(seq1).calculate_hamming_distance(seq2)
         assert res == expect
 
     @data(
@@ -91,6 +91,6 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_calculate_similarity(self, seq1, seq2, expect):
-        res = c(seq1).calculate_similarity(seq2)
+        res = Seq(seq1).calculate_similarity(seq2)
         assert res == expect
 

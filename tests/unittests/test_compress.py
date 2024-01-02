@@ -2,7 +2,7 @@
 Test class 
 '''
 from tests.helper import *
-from bio_sequence.seq_model.compress import Compress as c
+from src.eseq import Compress
 
 @ddt
 class TestCompress(TestCase):
@@ -17,7 +17,7 @@ class TestCompress(TestCase):
     )
     @unpack
     def test_encode_repeat(self, input, expect):
-        res = c.encode_repeat(input)
+        res = Compress.encode_repeat(input)
         assert res == expect
 
 
@@ -31,7 +31,7 @@ class TestCompress(TestCase):
     )
     @unpack
     def test_to_encoded_seq(self, input, expect):
-        res = c.to_encoded_seq(input)
+        res = Compress.to_encoded_seq(input)
         assert res == expect
 
 
@@ -43,5 +43,5 @@ class TestCompress(TestCase):
     )
     @unpack
     def test_decode_repeat(self, input, expect):
-        res = c.decode_repeat(input)
+        res = Compress.decode_repeat(input)
         assert res == expect

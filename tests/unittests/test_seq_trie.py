@@ -2,12 +2,10 @@
 Test class 
 '''
 from tests.helper import *
-from bio_sequence.seq_model.seq_trie import SeqTrie
+from src.eseq import SeqTrie
 
 @ddt
 class TestSeqTrie(TestCase):
-    def setUp(self):
-        self.c = SeqTrie()
 
     @data(
         ['ATCG', 'G', 4, ()],
@@ -15,7 +13,7 @@ class TestSeqTrie(TestCase):
     )
     @unpack
     def test_insert(self, input, expect_val, expect_depth, expect_pos):
-        res = self.c.insert(input)
+        res = SeqTrie().insert(input)
         assert res.val == expect_val
         assert res.depth == expect_depth
         assert getattr(res, 'val_pos') == expect_pos
@@ -26,6 +24,6 @@ class TestSeqTrie(TestCase):
     )
     @unpack
     def test_get(self, input, expect):
-        leave_node = self.c.insert(input)
-        res = self.c.get(leave_node)
+        leave_node = SeqTrie().insert(input)
+        res = SeqTrie().get(leave_node)
         assert res == expect

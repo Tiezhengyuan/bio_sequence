@@ -7,7 +7,7 @@ gene sequence translated into protein
 """
 from typing import Iterable
 from .dna import DNA
-from bio_sequence.seq_model.scan import Scan
+from .model.scan import Scan
 
 class ORF(DNA):
     def __init__(self, seq:str=None, min_length:int=None, ignore_nested:bool=None):

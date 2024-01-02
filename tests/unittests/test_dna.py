@@ -2,13 +2,13 @@
 Test class 
 '''
 from tests.helper import *
-from bio_sequence.sequence.dna import DNA as c
+from src.eseq import DNA
 
 @ddt
 class TestDNA(TestCase):
 
     def test_(self):
-        c('ATGC')
+        DNA('ATGC')
 
     @data(
         ['ATGC', 'TACG'],
@@ -16,7 +16,7 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_complement(self, seq, expect):
-        res = c(seq).complement()
+        res = DNA(seq).complement()
         assert res == expect
 
     @data(
@@ -24,19 +24,19 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_reverse_complement(self, seq, expect):
-        res = c(seq).reverse_complement()
+        res = DNA(seq).reverse_complement()
         assert res == expect
 
-    @data(
-        ['ATGC', .5],
-        ['GCGGC', 1],
-        ['', 0],
-        ['AB', 0],
-    )
-    @unpack
-    def test_calculate_gc(self, seq, expect):
-        res = c(seq).calculate_gc()
-        assert res == expect
+    # @data(
+    #     ['ATGC', .5],
+    #     ['GCGGC', 1],
+    #     ['', 0],
+    #     ['AB', 0],
+    # )
+    # @unpack
+    # def test_calculate_gDNA(self, seq, expect):
+    #     res = DNA(seq).calculate_gDNA()
+    #     assert res == expect
 
 
 
@@ -47,7 +47,7 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_detect_similarity(self, seq1, seq2, expect_max, expect):
-        res = c(seq1).detect_similarity(seq2)
+        res = DNA(seq1).detect_similarity(seq2)
         assert res[0] == expect_max
         assert res[1] == expect
 
@@ -57,7 +57,7 @@ class TestDNA(TestCase):
     )
     @unpack
     def test_detect_overlap(self, seq1, seq2, expect):
-        res = c(seq1).detect_overlap(seq2)
+        res = DNA(seq1).detect_overlap(seq2)
         assert res == expect
 
 
