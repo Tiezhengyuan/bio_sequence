@@ -1,7 +1,11 @@
-#eSeq: process sequence data
+#eSeq: process sequence
 
 ## introduction
-the tool eSeq can process various sequences including DNA, RNA, amino acid sequence, etc.
+The tool known as eSeq can offer methods for process various sequences. Those sequence could be DNA, RNA, amino acid sequence, etc.
+- Detect specific sequence, namely palindromic, similarity etc.
+- Iterator of sequence
+- Trim adapter from sequence.
+- Detect motif
 
 quick installation
 ```
@@ -22,4 +26,10 @@ Run unit tests
 pytest tests/unittests
 ```
 
+
+## Quick tour
+
+```
+import eseq
+```
 

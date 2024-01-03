@@ -65,11 +65,16 @@ class TestScan(TestCase):
         assert list(res) == expect
 
     @data(
-        ['ATACTC', 5,  ['ATACT', 'TACTC']],
-        ['ATACTC', 15,  ['ATACTC']],
-        ['ATA', 1,  ['A','T','A',]],
+        ['ATACTC', 5, None, ['ATACT', 'TACTC']],
+        ['ATACTC', 15, None, ['ATACTC']],
+        ['ATA', 1, None, ['A','T','A',]],
+        ['ATCGG', 2, None, ['AT', 'TC', 'CG', 'GG']],
+        ['ATCGG', 3, None, ['ATC', 'TCG', 'CGG']],
+        ['ATCGG', 6, None, ['ATCGG']],
+        ['ATCGG', 3, 2, ['CGG']],
+        ['ATCGG', 3, -4, ['TCG', 'CGG']],
     )
     @unpack
-    def test_k_mers(self, seq, k, expect):
-        res = Scan.k_mers(seq, k)
+    def test_k_mers(self, seq, k, start, expect):
+        res = Scan.k_mers(seq, k, start)
         assert [i[0] for i in res] == expect

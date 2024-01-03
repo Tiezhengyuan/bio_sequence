@@ -7,6 +7,10 @@ from .sequence.bio_dna import BioDNA
 from .sequence.dna import DNA
 from .sequence.orf import ORF
 from .sequence.palindromic import Palindromic
+
+from .sequence.rna import RNA
+
 from .sequence.prosite import Prosite
 from .sequence.protein import Protein
-from .sequence.rna import RNA
+
+from .sequence.trim_seq import TrimSeq

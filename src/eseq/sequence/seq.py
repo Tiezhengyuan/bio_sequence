@@ -5,7 +5,8 @@ from typing import Iterable, Callable
 
 class Seq:
     def __init__(self, seq:str=None):
-        self.seq = seq.upper().replace('\n', '') if seq and isinstance(seq, str) else ''
+        self.seq = seq.upper().replace('\n', '') if \
+            seq and isinstance(seq, str) else ''
     
     def length(self)->int:
         return len(self.seq)
@@ -69,5 +70,15 @@ class Seq:
         seq_len = len(self.seq) if len(self.seq) >= len(seq2) else len(seq2)
         return (seq_len - dist)/seq_len
 
-
+    def match_5end(self, seq2:str) -> int:
+        '''
+        match from 5'-end
+        return distance score
+        '''
+        dist = 0
+        end = len(seq2) if len(seq2) <= len(self.seq) else len(self.seq)
+        for i in range(0, end):
+            if self.seq[i] == seq2[i]:
+                dist += 1
+        return dist
 

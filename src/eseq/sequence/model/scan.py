@@ -46,13 +46,21 @@ class Scan:
             yield a, b
     
     @staticmethod
-    def k_mers(seq:str, k:int)->Iterable:
+    def k_mers(seq:str, k:int, start:int=None) -> Iterable:
         '''
         k-mers are substrings of length k contained within a sequence
         '''
         len_seq = len(seq)
-        if k > len_seq:
+        if k <= 0:
+            k = 1
+        elif k > len_seq:
             k = len_seq
-        for start in range(0, len_seq-k+1):
-            # print(self.seq[start:start+k], start, start+k-1)
-            yield (seq[start:start+k], start, start+k-1)
+        if start is None or abs(start) >= len_seq:
+            start = 0
+        elif start < 0:
+            start += len_seq
+        # iteration
+        for start in range(start, len_seq - k + 1):
+            subseq = seq[start:start + k]
+            # print(k, subseq, start, start+k-1)
+            yield (subseq, start, start + k - 1)

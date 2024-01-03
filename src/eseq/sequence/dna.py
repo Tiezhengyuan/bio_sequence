@@ -33,9 +33,6 @@ class DNA(Seq):
         g = self.count_sub_seq('G')
         c = self.count_sub_seq('C')
         return (g + c)/self.length()
-
-
-    
     
     def detect_similarity(self, seq2:str)->tuple:
         '''
