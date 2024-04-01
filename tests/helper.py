@@ -2,8 +2,6 @@ from copy import deepcopy
 from datetime import datetime
 import json
 import os
-import pandas as pd
-
 from ddt import ddt, data, unpack
 from unittest import TestCase, mock, skip
 

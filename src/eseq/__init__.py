@@ -1,16 +1,16 @@
-from .sequence.model.compress import Compress
-from .sequence.model.scan import Scan
-from .sequence.model.seq_trie import SeqTrie
+from .model.compress import Compress
+from .model.scan import Scan
+from .model.seq_trie import SeqTrie
 
-from .sequence.seq import Seq
-from .sequence.bio_dna import BioDNA
-from .sequence.dna import DNA
-from .sequence.orf import ORF
-from .sequence.palindromic import Palindromic
+from .seq import Seq
+from .bio_dna import BioDNA
+from .dna import DNA
+from .orf import ORF
+from .palindromic import Palindromic
 
-from .sequence.rna import RNA
+from .rna import RNA
 
-from .sequence.prosite import Prosite
-from .sequence.protein import Protein
+from .prosite import Prosite
+from .protein import Protein
 
-from .sequence.trim_seq import TrimSeq
+from .trim_seq import TrimSeq

@@ -9,14 +9,14 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 
 setup(
     name="eseq",
-    version='0.0.3',
+    version='0.0.4',
     author="Tiezheng Yuan",
     author_email="tiezhengyuan@hotmail.com",
     description="Process genomic sequences.",
     url = "https://github.com/Tiezhengyuan/bio_sequence.git",
     long_description_content_type="text/markdown",
     long_description=long_description,
-    packages=find_packages(),
+    package_dir={'': 'src'},
     install_requires=['Bio',],
     keywords=['pypi', 'cicd', 'python'],
     classifiers=[

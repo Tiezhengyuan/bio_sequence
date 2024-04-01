@@ -2,21 +2,25 @@
 Test class 
 '''
 from tests.helper import *
-from bio_sequence.seq_model.scan import Scan
-from bio_sequence.seq_model.seq_trie import SeqTrie
+from src.eseq import Scan, SeqTrie
 
 class TestSeqTrie(TestCase):
 
     def setUp(self):
         '''
-        root-A1-T2-G3-C4
-           |     |-T5-A6
-            -G7-T8
+        root
+         /\
+        A1 G7
+        |   \
+        T2  T8
+        | \
+        G3 T5
+        |   \
+        C4  A6
         '''
         sequence = 'ATGCATTAATGCGT'
         self.t = SeqTrie()
         for seq, end_pos in Scan.forward(sequence, 0, 4):
-            # print(seq, end_pos)
             self.t.insert(seq, end_pos)
 
     def test_insert(self):
